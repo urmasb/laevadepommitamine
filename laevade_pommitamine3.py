@@ -71,6 +71,9 @@ def laevaxy():
 
 while True:
     event = pygame.event.poll()
+    if event.type == pygame.KEYDOWN and event.key == 27:
+        break
+
     if laevadearv < 8:
         a = []
         b = []
@@ -93,38 +96,43 @@ while True:
                 print(ax, ay, lx, ly)
                 print(laevadearv, "laevadearv")
                 print(kohad[ly + 1][lx], " kohad r1")
+
                 if lx < ax and ay == ly:  # tagurpidi laeva kordinaatide vahetus
                     l = ax
                     ax = lx
                     lx = l
+
                 if ax == lx and ly < ay:
                     ay, ly = ly, ay
 
-                if lx > ax:
+                if lx > ax:  # horisontaalne laev
                     Saab = 1
-                    for x in range(ax, lx):  # kas  saab laeva teha
+                    for x in range(ax, lx + 1):  # kas  saab laeva teha
+
                         if kohad[ay][x] == "l" or kohad[ay - 1][x] == "l" or kohad[ay + 1][x] == "l":
                             Saab = 0
                     if (kohad[ay][ax - 1] == "l" or kohad[ay][lx + 1] == "l"):
                         Saab = 0
 
                     if Saab == 1:
-                        laev = pygame.Rect(lxy[0][0], lxy[0][1], lxy[1][0] - lxy[0][0] + 50, lxy[1][1] - lxy[0][1] + 50)
+                        laev = pygame.Rect(ax * 50 + 50, lxy[0][1], 150, 50)
+                        # print("H: ", laevadearv,ax*50, lxy[0][0], lxy[0][1], hs*150,  50)
                         laevadearv += 1
                         for l in range(3):
                             kohad[ay][ax + l] = "l"
                             # print("Xa: ",lxy[0][0] / 50 - 2)
                             # print("ya: ",lxy[0][1] / 50 - 2 + l)
-                elif ly > ay:
+
+                elif ly > ay:  # vertikaalne laev
                     Saab = 1
-                    for y in range(ay, ly):  # kas laeva saab
+                    for y in range(ay, ly + 1):  # kas laeva saab
                         if kohad[y][ax] == "l" or kohad[y][ax - 1] == "l" or kohad[y][ax + 1] == "l":
                             Saab = 0
                     if (kohad[ay - 1][ax] == "l" or kohad[ly + 1][ax] == "l"):
                         Saab = 0
 
                     if Saab == 1:
-                        laev = pygame.Rect(lxy[0][0], lxy[0][1], lxy[1][0] - lxy[0][0] + 50, lxy[1][1] - lxy[0][1] + 50)
+                        laev = pygame.Rect(lxy[0][0], ay * 50 + 50, 50, 150)
                         laevadearv += 1
                         for l in range(3):
                             kohad[ay + l][ax] = "l"
@@ -146,7 +154,6 @@ while True:
     # else:
     #   pass
 
-
     def vastaselaevadejoonistamine(vastaselaev):
         for i in range(12):
             for j in range(12):
@@ -159,11 +166,14 @@ while True:
 
 
     if laevadearv == 7:
+        # break
+
         vastaselaevad = laevazde_gen1.trsfdga()  # vastaselaevad
         vastaselaevadejoonistamine(vastaselaevad)
 
     if event.type == pygame.QUIT:
         break
+
 pygame.quit()
 # pygame.mouse.get_pressed()
 # print(x)
