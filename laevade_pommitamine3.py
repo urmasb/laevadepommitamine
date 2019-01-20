@@ -2,6 +2,7 @@ from random import randint
 import pygame
 import laevazde_gen1
 
+vastaselaevadtehtud=0
 laev = None
 laevadearv = 0
 kohad = [["n" for j in range(12)] for i in range(12)]
@@ -157,20 +158,22 @@ while True:
     def vastaselaevadejoonistamine(vastaselaev):
         for i in range(12):
             for j in range(12):
-                if laev in vastaselaev[i]:
-                    if vastaselaev[i][j] == "1":
-                        laev2 = pygame.Rect(i, j, i + 10, j + 10)
-                        print(laev2)
-                        pygame.draw.rect(ekraani_pind, (0, 0, 0), laev2)
-                        pygame.display.flip()
+                #if laev in vastaselaev[i]:
+                j_ = vastaselaev[i][j]
+                print(j_)
+                if j_ == "1":
+                    laev2 = pygame.Rect(i, j, i + 10, j + 10)
+                    print("laev2",laev2)
+                    pygame.draw.rect(ekraani_pind, (0, 0, 0), laev2)
 
 
-    if laevadearv == 7:
+
+    if laevadearv == 7 and vastaselaevadtehtud==0:
         # break
-
+        vastaselaevadtehtud=1
         vastaselaevad = laevazde_gen1.trsfdga()  # vastaselaevad
         vastaselaevadejoonistamine(vastaselaevad)
-
+        pygame.display.flip()
     if event.type == pygame.QUIT:
         break
 
@@ -183,5 +186,4 @@ pygame.quit()
 
 
 # vead:
-# laevade alumised nurgad lähvad kokku
 #

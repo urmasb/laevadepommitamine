@@ -45,8 +45,8 @@ def trsfdga():
                     kohad[algusy + a][algusx] = "l"
     # end while
 
-    print("vastaselaevad")
+    #print("vastaselaevad")
     for n in range(12):
         vlaevad = kohad
-        print(n, " - ", vlaevad[n])
+        #print(n, " - ", vlaevad[n])
     return vlaevad
