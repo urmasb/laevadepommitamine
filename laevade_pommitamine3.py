@@ -146,6 +146,7 @@ while True:
     # else:
     #   pass
 
+
     def vastaselaevadejoonistamine(vastaselaev):
         for i in range(12):
             for j in range(12):
