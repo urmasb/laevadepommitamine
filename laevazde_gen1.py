@@ -1,9 +1,7 @@
 from random import randint
-import pygame
 
-
-def trsfdga():
-    mitulaeva = 8
+def Pane_Laevad_Paigale():
+    mitulaeva = 7
     laevadearv = 0
     kohad = [[" " for j in range(12)] for i in range(12)]
     # print(kohad)
@@ -45,8 +43,8 @@ def trsfdga():
                     kohad[algusy + a][algusx] = "l"
     # end while
 
-    #print("vastaselaevad")
-    for n in range(12):
-        vlaevad = kohad
-        #print(n, " - ", vlaevad[n])
+    
+    vlaevad = kohad
+    
     return vlaevad
+
